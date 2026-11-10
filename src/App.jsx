@@ -39,6 +39,14 @@ function WhatsAppIcon() {
   );
 }
 
+function CallIcon() {
+  return (
+    <svg className="call-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M7.1 3.9h2.35l1.18 4.12-1.6 1.58a15.4 15.4 0 0 0 5.37 5.37l1.58-1.6 4.12 1.18v2.35a2.1 2.1 0 0 1-2.28 2.09A15.92 15.92 0 0 1 5 6.18 2.1 2.1 0 0 1 7.1 3.9Z" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 function WhatsAppLink({ children, message, className = 'button button-dark', ...props }) {
   return <a className={className} href={waLink(message)} target="_blank" rel="noreferrer" {...props}><WhatsAppIcon />{children}</a>;
 }
@@ -565,7 +573,7 @@ function App() {
   else if (path === '/stay') Page = StayPage;
   else if (path === '/volunteer') Page = VolunteerPage;
   else if (path === '/visit') Page = VisitPage;
-  return <><a className="skip-link" href="#main-content">Skip to content</a><Header /><div id="main-content"><Page /></div><Footer /><a className="floating-wa" href={waLink('Hi! I’m planning a visit to The Himalayan Chapter. Could you help me with today’s menu, nostalgic food specials, timings, or a reservation?')} target="_blank" rel="noreferrer" aria-label="Plan your visit with The Himalayan Chapter on WhatsApp"><WhatsAppIcon /><span>Chat on WhatsApp</span><Arrow diagonal /></a></>;
+  return <><a className="skip-link" href="#main-content">Skip to content</a><Header /><div id="main-content"><Page /></div><Footer /><div className="floating-contact-actions"><a className="floating-call" href={`tel:+${whatsappNumber}`} aria-label="Call The Himalayan Chapter at +91 83075 70870" title="Call The Himalayan Chapter"><CallIcon /></a><a className="floating-wa" href={waLink('Hi! I’m planning a visit to The Himalayan Chapter. Could you help me with today’s menu, nostalgic food specials, timings, or a reservation?')} target="_blank" rel="noreferrer" aria-label="Plan your visit with The Himalayan Chapter on WhatsApp"><WhatsAppIcon /><span>Chat on WhatsApp</span><Arrow diagonal /></a></div></>;
 }
 
 export default App;
