@@ -1352,6 +1352,243 @@ button:focus-visible {
   .nostalgia-dish {
     transition: none;
   }
+
+  .chapter-intro {
+    display: none;
+  }
+}
+
+.chapter-site-shell.is-arriving {
+  animation: chapter-site-arrive .95s ease both;
+}
+
+.chapter-site-shell.is-landing {
+  animation: chapter-site-arrive .85s ease both;
+}
+
+.chapter-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 25px;
+  overflow: hidden;
+  perspective: 1600px;
+  color: #f6f2e8;
+  opacity: 1;
+  transition: opacity .85s cubic-bezier(.65, 0, .35, 1);
+}
+
+.chapter-intro-interior {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: brightness(.78) saturate(.9);
+  transform: scale(1.08);
+  transition: transform 2.5s cubic-bezier(.2, .7, .2, 1), filter 2.5s ease, opacity .3s ease;
+}
+
+.chapter-intro.is-exiting .chapter-intro-interior {
+  filter: brightness(.92) saturate(1);
+  transform: scale(1.01);
+}
+
+.chapter-intro::before,
+.chapter-intro::after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+  width: 50.15%;
+  background:
+    radial-gradient(ellipse at 50% 45%, #315445 0, #18372d 48%, #10271f 100%);
+  content: "";
+  backface-visibility: hidden;
+  transition: transform 1.05s cubic-bezier(.77, 0, .18, 1), opacity .3s ease;
+}
+
+.chapter-intro::before {
+  left: 0;
+  border-right: 1px solid #c8a35a40;
+  transform-origin: left center;
+}
+
+.chapter-intro::after {
+  right: 0;
+  border-left: 1px solid #c8a35a40;
+  transform-origin: right center;
+}
+
+.chapter-intro::before {
+  pointer-events: none;
+}
+
+.chapter-intro.is-exiting {
+  pointer-events: none;
+}
+
+.chapter-intro.is-exiting::before {
+  transform: rotateY(104deg);
+}
+
+.chapter-intro.is-exiting::after {
+  transform: rotateY(-104deg);
+}
+
+.chapter-intro-mark {
+  position: relative;
+  z-index: 2;
+  width: clamp(190px, 42vw, 340px);
+  aspect-ratio: 1;
+  perspective: 1000px;
+}
+
+.chapter-intro-halo {
+  position: absolute;
+  z-index: 2;
+  width: min(80vw, 700px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, #f1d38b1c 0, #c8a35a0c 35%, transparent 70%);
+  animation: chapter-halo-arrive 1.8s ease-out both;
+  pointer-events: none;
+}
+
+.chapter-intro-mark {
+  animation: chapter-logo-arrive 1.15s cubic-bezier(.2, .8, .2, 1) both;
+}
+
+.chapter-intro-logo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  backface-visibility: hidden;
+}
+
+.chapter-intro-logo-left {
+  clip-path: inset(0 50% 0 0);
+  transform-origin: 100% center;
+  transition: transform 1.05s cubic-bezier(.77, 0, .18, 1);
+}
+
+.chapter-intro-logo-right {
+  clip-path: inset(0 0 0 50%);
+  transform-origin: 0 center;
+  transition: transform 1.05s cubic-bezier(.77, 0, .18, 1);
+}
+
+.chapter-intro.is-exiting .chapter-intro-logo-left {
+  transform: rotateY(112deg) translateX(-8%);
+}
+
+.chapter-intro.is-exiting .chapter-intro-logo-right {
+  transform: rotateY(-112deg) translateX(8%);
+}
+
+.chapter-intro-rooftop {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 56%;
+  transform: translateY(101%);
+  transition: transform 1.05s cubic-bezier(.76, 0, .2, 1);
+}
+
+.chapter-intro.is-rooftop .chapter-intro-rooftop {
+  transform: translateY(0);
+}
+
+.chapter-intro.is-rooftop-exiting .chapter-intro-rooftop {
+  transform: translateY(-101%);
+}
+
+.chapter-intro.is-rooftop-exiting .chapter-intro-interior,
+.chapter-intro.is-rooftop-exiting::before,
+.chapter-intro.is-rooftop-exiting::after {
+  opacity: 0;
+}
+
+.chapter-intro.is-rooftop .chapter-intro-mark,
+.chapter-intro.is-rooftop .chapter-intro-halo,
+.chapter-intro.is-rooftop .chapter-intro-caption {
+  opacity: 0;
+  transition: opacity .3s ease;
+}
+
+.chapter-intro-caption {
+  z-index: 2;
+  color: #e7d8b8;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .24em;
+  text-align: center;
+  text-transform: uppercase;
+  animation: chapter-caption-arrive .8s .4s ease both;
+  transition: opacity .3s ease, transform .45s ease;
+}
+
+.chapter-intro.is-exiting .chapter-intro-caption {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+@keyframes chapter-logo-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(.92);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes chapter-caption-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(7px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes chapter-halo-arrive {
+  from {
+    opacity: 0;
+    transform: scale(.78);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes chapter-site-arrive {
+  from {
+    opacity: .4;
+    transform: scale(1.015);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .whatsapp-icon {
@@ -3577,5 +3814,9 @@ button:focus-visible {
   .hero-carousel-slide,
   .hero-carousel-progress > span {
     animation: none;
+  }
+
+  .chapter-intro {
+    display: none;
   }
 }

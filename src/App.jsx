@@ -561,8 +561,40 @@ function VisitPage() {
   );
 }
 
+function ChapterIntro({ isExiting, isRooftopVisible, isRooftopExiting }) {
+  return (
+    <div className={`chapter-intro${isExiting ? ' is-exiting' : ''}${isRooftopVisible ? ' is-rooftop' : ''}${isRooftopExiting ? ' is-rooftop-exiting' : ''}`} role="status" aria-label="The Himalayan Chapter">
+      <img className="chapter-intro-interior" src="/assets/chapter-cafe-postcard-04.jpg" alt="" />
+      <div className="chapter-intro-halo" aria-hidden="true" />
+      <div className="chapter-intro-mark" aria-hidden="true">
+        <img className="chapter-intro-logo chapter-intro-logo-left" src="/assets/chapter-brand-logo.png" alt="" />
+        <img className="chapter-intro-logo chapter-intro-logo-right" src="/assets/chapter-brand-logo.png" alt="" />
+      </div>
+      <span className="chapter-intro-caption">A café by Nostalgia Co. Collective</span>
+      <img className="chapter-intro-rooftop" src="/assets/chapter-rooftop-intro.jpg" alt="" />
+    </div>
+  );
+}
+
 function App() {
   const path = useMemo(() => window.location.pathname.replace(/\/$/, '') || '/', []);
+  const [isIntroVisible, setIsIntroVisible] = useState(() => !window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  const [isIntroExiting, setIsIntroExiting] = useState(false);
+  const [isRooftopVisible, setIsRooftopVisible] = useState(false);
+  const [isRooftopExiting, setIsRooftopExiting] = useState(false);
+  useEffect(() => {
+    if (!isIntroVisible) return undefined;
+    const exitTimer = window.setTimeout(() => setIsIntroExiting(true), 1700);
+    const rooftopTimer = window.setTimeout(() => setIsRooftopVisible(true), 3600);
+    const rooftopExitTimer = window.setTimeout(() => setIsRooftopExiting(true), 4950);
+    const removeTimer = window.setTimeout(() => setIsIntroVisible(false), 6050);
+    return () => {
+      window.clearTimeout(exitTimer);
+      window.clearTimeout(rooftopTimer);
+      window.clearTimeout(rooftopExitTimer);
+      window.clearTimeout(removeTimer);
+    };
+  }, [isIntroVisible]);
   let Page = HomePage;
   if (path === '/menu') Page = MenuPage;
   else if (path === '/events') Page = EventsPage;
@@ -570,7 +602,7 @@ function App() {
   else if (path === '/stay') Page = StayPage;
   else if (path === '/volunteer') Page = VolunteerPage;
   else if (path === '/visit') Page = VisitPage;
-  return <><a className="skip-link" href="#main-content">Skip to content</a><Header /><div id="main-content"><Page /></div><Footer /><div className="floating-contact-actions"><a className="floating-call" href={`tel:+${whatsappNumber}`} aria-label="Call The Himalayan Chapter at +91 83075 70870" title="Call The Himalayan Chapter"><CallIcon /></a><a className="floating-wa" href={waLink('Hi! I’m planning a visit to The Himalayan Chapter. Could you help me with today’s menu, nostalgic food specials, timings, or a reservation?')} target="_blank" rel="noreferrer" aria-label="Plan your visit with The Himalayan Chapter on WhatsApp"><WhatsAppIcon /><span>Chat on WhatsApp</span><Arrow diagonal /></a></div></>;
+  return <><div className={`chapter-site-shell${isIntroVisible ? ' is-arriving' : ''}${isRooftopExiting ? ' is-landing' : ''}`} inert={isIntroVisible}><a className="skip-link" href="#main-content">Skip to content</a><Header /><div id="main-content"><Page /></div><Footer /><div className="floating-contact-actions"><a className="floating-call" href={`tel:+${whatsappNumber}`} aria-label="Call The Himalayan Chapter at +91 83075 70870" title="Call The Himalayan Chapter"><CallIcon /></a><a className="floating-wa" href={waLink('Hi! I’m planning a visit to The Himalayan Chapter. Could you help me with today’s menu, nostalgic food specials, timings, or a reservation?')} target="_blank" rel="noreferrer" aria-label="Plan your visit with The Himalayan Chapter on WhatsApp"><WhatsAppIcon /><span>Chat on WhatsApp</span><Arrow diagonal /></a></div></div>{isIntroVisible && <ChapterIntro isExiting={isIntroExiting} isRooftopVisible={isRooftopVisible} isRooftopExiting={isRooftopExiting} />}</>;
 }
 
 export default App;
