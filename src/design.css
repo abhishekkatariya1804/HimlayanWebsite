@@ -2585,22 +2585,38 @@ button:focus-visible {
 
 .hero-carousel-arrow {
   display: grid;
-  width: 36px;
-  height: 36px;
+  position: absolute;
+  top: 50%;
+  z-index: 3;
+  width: 46px;
+  height: 46px;
   place-items: center;
-  border: 1px solid #e8dfce6b;
+  border: 2px solid #c8a35a;
   border-radius: 50%;
-  background: transparent;
-  color: #fffdf7;
+  background: #f6f2e8f2;
+  box-shadow: 0 4px 14px #001c1366;
+  color: #12352b;
   cursor: pointer;
-  font-size: 17px;
-  transition: background .2s ease, color .2s ease;
+  font-size: 22px;
+  font-weight: 700;
+  transform: translateY(-50%);
+  transition: background .2s ease, color .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+
+.hero-carousel-previous {
+  left: 18px;
+}
+
+.hero-carousel-next {
+  right: 18px;
 }
 
 .hero-carousel-arrow:hover,
 .hero-carousel-arrow:focus-visible {
-  background: #f7f3e9;
-  color: var(--green);
+  background: #e5b64f;
+  box-shadow: 0 5px 16px #001c1380;
+  color: #12352b;
+  transform: translateY(-50%) scale(1.06);
 }
 
 .hero-carousel-dot {
@@ -2822,8 +2838,16 @@ button:focus-visible {
   }
 
   .hero-carousel-arrow {
-    width: 32px;
-    height: 32px;
+    width: 42px;
+    height: 42px;
+  }
+
+  .hero-carousel-previous {
+    left: 12px;
+  }
+
+  .hero-carousel-next {
+    right: 12px;
   }
 
   .visit-strip {

@@ -21,9 +21,12 @@ const navItems = [
 ];
 
 const homeHeroSlides = [
-  { type: 'image', src: '/assets/chapter-cafe-interior.jpg', alt: 'The Himalayan Chapter café dining room', caption: 'Find your corner.' },
-  { type: 'image', src: '/assets/chapter-rooftop-panorama.jpg', alt: 'An open-air view across the Himalayan Chapter rooftop', caption: 'Stay for the mountain air.' },
-  { type: 'video', src: rooftopVideos[1].src, poster: '/assets/chapter-rooftop-gathering.jpg', alt: rooftopVideos[1].title, caption: 'Press play on a rooftop evening.' },
+  { type: 'image', src: '/assets/chapter-cafe-postcard-01.jpg', alt: 'A balcony at The Himalayan Chapter overlooking Tapovan and the hills', caption: 'Take in the view.' },
+  { type: 'image', src: '/assets/chapter-cafe-postcard-02.jpg', alt: 'The rooftop terrace set for a relaxed meal with mountain views', caption: 'A table above the town.' },
+  { type: 'image', src: '/assets/chapter-cafe-postcard-03.jpg', alt: 'Open-air rooftop seating with the Tapovan hills beyond', caption: 'Room to breathe.' },
+  { type: 'image', src: '/assets/chapter-cafe-postcard-04.jpg', alt: 'A bright, welcoming lounge inside The Himalayan Chapter', caption: 'Come find your corner.' },
+  { type: 'image', src: '/assets/chapter-cafe-postcard-05.jpg', alt: 'Guests gathered for a shared rooftop evening at The Himalayan Chapter', caption: 'Good company, open skies.' },
+  { type: 'image', src: '/assets/chapter-cafe-postcard-06.jpg', alt: 'A new view of The Himalayan Chapter shared by the café', caption: 'One more frame from our story.' },
 ];
 
 function waLink(message) {
@@ -169,16 +172,16 @@ function HomePage() {
                   {currentHeroSlide.type === 'video'
                     ? <video key={currentHeroSlide.src} className="hero-image hero-video" controls playsInline preload="none" poster={currentHeroSlide.poster} aria-label={currentHeroSlide.alt}><source src={currentHeroSlide.src} type="video/mp4" />Your browser does not support embedded videos.</video>
                     : <img className="hero-image" src={currentHeroSlide.src} alt={currentHeroSlide.alt} loading={activeHeroSlide === 0 ? 'eager' : 'lazy'} fetchPriority={activeHeroSlide === 0 ? 'high' : 'auto'} decoding="async" />}
+                  <button className="hero-carousel-arrow hero-carousel-previous" type="button" aria-label="Previous postcard" onClick={() => showHeroSlide(activeHeroSlide - 1)}>←</button>
+                  <button className="hero-carousel-arrow hero-carousel-next" type="button" aria-label="Next postcard" onClick={() => showHeroSlide(activeHeroSlide + 1)}>→</button>
                   <div className="image-stamp"><span>{currentHeroSlide.caption}</span><b>·</b><span>{String(activeHeroSlide + 1).padStart(2, '0')} / {String(homeHeroSlides.length).padStart(2, '0')}</span></div>
                 </div>
                 <div className="hero-carousel-controls">
                   <span className="hero-carousel-caption">A little postcard from Tapovan</span>
                   <div className="hero-carousel-actions">
-                    <button className="hero-carousel-arrow" type="button" aria-label="Previous postcard" onClick={() => showHeroSlide(activeHeroSlide - 1)}>←</button>
                     <div className="hero-carousel-dots" role="group" aria-label="Choose a postcard">
                       {homeHeroSlides.map((slide, index) => <button key={slide.src} className={`hero-carousel-dot${index === activeHeroSlide ? ' is-active' : ''}`} type="button" aria-label={`Show postcard ${index + 1}: ${slide.caption}`} aria-pressed={index === activeHeroSlide} onClick={() => showHeroSlide(index)} />)}
                     </div>
-                    <button className="hero-carousel-arrow" type="button" aria-label="Next postcard" onClick={() => showHeroSlide(activeHeroSlide + 1)}>→</button>
                   </div>
                   <div className="hero-carousel-progress" key={`hero-progress-${activeHeroSlide}-${isHeroCarouselPaused}`} aria-hidden="true"><span /></div>
                 </div>
