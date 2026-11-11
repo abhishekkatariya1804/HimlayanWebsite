@@ -146,6 +146,33 @@ p {
   color: var(--ink);
 }
 
+.hero-brand-watermark {
+  position: absolute;
+  top: 48%;
+  left: 32%;
+  z-index: 0;
+  width: clamp(280px, 38vw, 460px);
+  height: auto;
+  opacity: .065;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+}
+
+.hero-grid,
+.hero-scroll {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 760px) {
+  .hero-brand-watermark {
+    top: 38%;
+    left: 50%;
+    width: min(72vw, 330px);
+    opacity: .045;
+  }
+}
+
 .hero:before,
 .hero:after,
 .hero-topography {
@@ -1407,9 +1434,13 @@ button:focus-visible {
   z-index: 1;
   width: 50.15%;
   background:
-    radial-gradient(ellipse at 50% 45%, #315445 0, #18372d 48%, #10271f 100%);
+    radial-gradient(ellipse at 30% 37%, #b0784030 0, transparent 38%),
+    repeating-linear-gradient(90deg, transparent 0 11px, #f3cb8210 12px, transparent 14px 28px, #1a0e081c 30px, transparent 32px 47px),
+    repeating-linear-gradient(0deg, #1d100b14 0 2px, transparent 3px 86px),
+    linear-gradient(90deg, #24150d 0, #754a27 8%, #54351f 20%, #8a5c32 46%, #5d391f 72%, #734622 91%, #28180f 100%);
   content: "";
   backface-visibility: hidden;
+  box-shadow: inset 0 0 70px #100a07a6, inset 0 0 0 20px #2114099c, inset 0 0 0 23px #d0a15a70, inset 0 0 0 29px #29180c55;
   transition: transform 1.05s cubic-bezier(.77, 0, .18, 1), opacity .3s ease;
 }
 
@@ -1444,7 +1475,7 @@ button:focus-visible {
 .chapter-intro-mark {
   position: relative;
   z-index: 2;
-  width: clamp(190px, 42vw, 340px);
+  width: clamp(220px, 44vw, 360px);
   aspect-ratio: 1;
   perspective: 1000px;
 }
@@ -1469,8 +1500,13 @@ button:focus-visible {
   inset: 0;
   width: 100%;
   height: 100%;
+  padding: 8px;
+  border: 3px double #b18443;
+  border-radius: 10px;
+  background: #f5ecd4;
   object-fit: contain;
   backface-visibility: hidden;
+  box-shadow: 0 12px 30px #130a0580, inset 0 0 0 4px #fff9e8;
 }
 
 .chapter-intro-logo-left {

@@ -146,6 +146,7 @@ function HomePage() {
       <main>
         <section className="hero">
           <div className="hero-topography" aria-hidden="true" />
+          <img className="hero-brand-watermark" src="/assets/chapter-brand-logo.png" alt="" aria-hidden="true" />
           <div className="hero-grid wrap">
             <div className="hero-copy">
               <span className="eyebrow"><span className="eyebrow-dot" /> Tapovan · Rishikesh</span>
@@ -585,9 +586,9 @@ function App() {
   useEffect(() => {
     if (!isIntroVisible) return undefined;
     const exitTimer = window.setTimeout(() => setIsIntroExiting(true), 1700);
-    const rooftopTimer = window.setTimeout(() => setIsRooftopVisible(true), 3600);
-    const rooftopExitTimer = window.setTimeout(() => setIsRooftopExiting(true), 4950);
-    const removeTimer = window.setTimeout(() => setIsIntroVisible(false), 6050);
+    const rooftopTimer = window.setTimeout(() => setIsRooftopVisible(true), 5750);
+    const rooftopExitTimer = window.setTimeout(() => setIsRooftopExiting(true), 9800);
+    const removeTimer = window.setTimeout(() => setIsIntroVisible(false), 10900);
     return () => {
       window.clearTimeout(exitTimer);
       window.clearTimeout(rooftopTimer);
