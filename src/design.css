@@ -3038,7 +3038,6 @@ button:focus-visible {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
   gap: 25px;
   padding-block: 26px;
   border-bottom: 1px solid var(--line);
@@ -3066,24 +3065,6 @@ button:focus-visible {
   font-family: var(--serif);
   font-size: 17px;
   font-weight: 600;
-}
-
-.retreat-experience-partner img {
-  background: #090510;
-}
-
-.retreat-partner-plus {
-  color: var(--walnut);
-  font-family: var(--serif);
-  font-size: 27px;
-}
-
-.retreat-partners > p {
-  width: 100%;
-  margin: -14px 0 0;
-  color: #827d6e;
-  font-size: 10px;
-  text-align: center;
 }
 
 .retreat-meaning {
@@ -3459,13 +3440,11 @@ button:focus-visible {
   }
 
   .retreat-partners {
-    justify-content: flex-start;
-    gap: 12px;
+    justify-content: center;
     padding-block: 20px;
   }
 
   .retreat-partner {
-    flex: 1 1 130px;
     gap: 8px;
   }
 
@@ -3477,15 +3456,6 @@ button:focus-visible {
 
   .retreat-partner strong {
     font-size: 14px;
-  }
-
-  .retreat-partner-plus {
-    font-size: 19px;
-  }
-
-  .retreat-partners > p {
-    margin: -4px 0 0;
-    text-align: left;
   }
 
   .retreat-meaning-grid,

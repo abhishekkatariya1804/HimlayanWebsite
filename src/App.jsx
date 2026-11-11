@@ -311,7 +311,7 @@ function HomePage() {
           <div className="retreat-teaser-copy">
             <span className="eyebrow">A weekend that moves you</span>
             <h2 id="retreat-teaser-title">Meet <em>Rajas.</em><br />Find your Rishikesh.</h2>
-            <p>Three days, two nights, and a little more life in every moment—local discoveries, good food and rooftop nights, brought together by The Himalayan Chapter and Experience Rishikesh.</p>
+            <p>Three days, two nights, and a little more life in every moment—local discoveries, good food and rooftop nights, thoughtfully brought together by The Himalayan Chapter.</p>
             <div className="retreat-teaser-facts"><span>Every weekend</span><span>From ₹8,999 per person</span></div>
             <a className="button button-dark" href="/retreats">Discover the retreat <Arrow /></a>
           </div>
@@ -435,7 +435,7 @@ function StayPage() {
 }
 
 function RetreatsPage() {
-  const retreatMessage = 'Hi! I’m interested in the Rajas weekend retreat with The Himalayan Chapter and Experience Rishikesh. Please share available weekends, itinerary, inclusions, and booking details. I am travelling as: [solo / couple / group of __].';
+  const retreatMessage = 'Hi! I’m interested in the Rajas weekend retreat by The Himalayan Chapter. Please share available weekends, itinerary, inclusions, and booking details. I am travelling as: [solo / couple / group of __].';
 
   return (
     <main className="retreats-page">
@@ -452,17 +452,11 @@ function RetreatsPage() {
         <span className="retreat-hero-mark" aria-hidden="true">R</span>
       </section>
 
-      <section className="retreat-partners wrap" aria-label="Retreat partners">
-        <a className="retreat-partner" href="/" aria-label="The Himalayan Chapter">
+      <section className="retreat-partners wrap" aria-label="Retreat host">
+        <div className="retreat-partner">
           <img src="/assets/chapter-logo-256.png" alt="" />
-          <span>Hosted by<br /><strong>The Himalayan Chapter</strong></span>
-        </a>
-        <span className="retreat-partner-plus" aria-hidden="true">×</span>
-        <a className="retreat-partner retreat-experience-partner" href="https://experiencerishikesh.com/" target="_blank" rel="noreferrer" aria-label="Experience Rishikesh, opens in a new tab">
-          <img src="/assets/experience-rishikesh-logo.jpeg" alt="" />
-          <span>Explored with<br /><strong>Experience Rishikesh</strong></span>
-        </a>
-        <p>Two local brands, one carefully gathered weekend.</p>
+          <span>Created and hosted by<br /><strong>The Himalayan Chapter</strong></span>
+        </div>
       </section>
 
       <section className="retreat-meaning section-pad">
