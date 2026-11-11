@@ -1660,6 +1660,12 @@ button:focus-visible {
   border-top: 1px solid #e4dccb;
 }
 
+.menu-download-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
 .menu-digital .menu-download h2 {
   font-family: var(--serif);
   font-weight: 600;
@@ -1686,6 +1692,10 @@ button:focus-visible {
     min-height: 54px;
     padding: 9px 16px 9px 10px;
     font-size: 12px;
+  }
+
+  .menu-download-actions {
+    width: 100%;
   }
 
   .menu-digital {

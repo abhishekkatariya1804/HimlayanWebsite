@@ -345,7 +345,7 @@ function MenuPage() {
       <section className="menu-digital wrap">
         <div className="menu-digital-intro">
           <div><span className="eyebrow">The menu, made for the web</span><h2>Find an old favourite.<br /><em>Meet a new one.</em></h2></div>
-          <p>Prices are transcribed from the printed menu where legible. Message us to check anything unclear, or to find out what’s available today.</p>
+          <p>Menu items and prices follow our latest menu. Message us to confirm what’s available today.</p>
         </div>
         <div className="menu-nostalgia-note">
           <div><span className="eyebrow">A taste that takes you home</span><h3>Bajra roti, makki di roti<br /><em>& churma, when they’re on.</em></h3></div>
@@ -372,7 +372,7 @@ function MenuPage() {
           ))}
           {!visibleSections.length && <div className="menu-no-results"><p>No dishes match “{query}” just yet.</p><WhatsAppLink className="button button-dark" message={`Hi! I’m looking for ${query}. Could you let me know if you have it or suggest something similar?`}>Ask us on WhatsApp <Arrow diagonal /></WhatsAppLink></div>}
         </div>
-        <div className="menu-download"><div><span className="eyebrow">Prefer the original print menu?</span><h2>Keep the keepsake.</h2><p>Open or download the café’s original scanned menu.</p></div><a className="button button-outline" href="/assets/menu-19-sep.pdf" target="_blank" rel="noreferrer">Open original menu <Arrow diagonal /></a></div>
+        <div className="menu-download"><div><span className="eyebrow">Take the menu with you</span><h2>Keep the keepsake.</h2><p>Open or download the updated digital menu.</p></div><div className="menu-download-actions"><a className="button button-dark" href="/assets/chapter-menu-digital.pdf" target="_blank" rel="noreferrer">Open digital menu <Arrow diagonal /></a></div></div>
       </section>
       <section className="menu-cta"><div className="wrap menu-cta-inner"><p>Not sure what you’re craving?</p><WhatsAppLink message="Hi! I’m looking for something nostalgic. What’s cooking today, and when are bajra roti, makki di roti, or churma next available?">Tell us what you miss <Arrow diagonal /></WhatsAppLink></div></section>
     </main>
