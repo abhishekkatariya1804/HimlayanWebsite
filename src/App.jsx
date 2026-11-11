@@ -58,7 +58,7 @@ function Arrow({ diagonal = false }) {
 function Brand({ small = false }) {
   return (
     <a className={`brand ${small ? 'brand-small' : ''}`} href="/" aria-label="The Himalayan Chapter home">
-      <span className="brand-crest"><img src="/assets/chapter-logo-256.png" alt="The Himalayan Chapter official crest" /></span>
+      <span className="brand-crest"><img src="/assets/chapter-brand-logo.png" alt="The Himalayan Chapter official crest" /></span>
       <span className="brand-copy"><strong>The Himalayan Chapter</strong><small>More Than a Place. A Chapter.</small></span>
     </a>
   );
@@ -454,7 +454,7 @@ function RetreatsPage() {
 
       <section className="retreat-partners wrap" aria-label="Retreat host">
         <div className="retreat-partner">
-          <img src="/assets/chapter-logo-256.png" alt="" />
+          <img src="/assets/chapter-brand-logo.png" alt="" />
           <span>Created and hosted by<br /><strong>The Himalayan Chapter</strong></span>
         </div>
       </section>
