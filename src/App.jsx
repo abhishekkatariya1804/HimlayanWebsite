@@ -214,7 +214,7 @@ function HomePage() {
               <a className="text-link" href="/events">More rooftop stories <Arrow /></a>
             </div>
             <div className="home-film-grid">
-              {rooftopVideos.map((video, index) => (
+              {rooftopVideos.filter((video) => video.showOnHome !== false).map((video, index) => (
                 <article className="home-film" key={video.src}>
                   <div className="home-film-frame">
                     <video controls playsInline preload="none" poster={index === 0 ? '/assets/chapter-rooftop-music.jpg' : '/assets/chapter-rooftop-gathering.jpg'} aria-label={video.title}>
@@ -586,9 +586,9 @@ function App() {
   useEffect(() => {
     if (!isIntroVisible) return undefined;
     const exitTimer = window.setTimeout(() => setIsIntroExiting(true), 1700);
-    const rooftopTimer = window.setTimeout(() => setIsRooftopVisible(true), 5750);
-    const rooftopExitTimer = window.setTimeout(() => setIsRooftopExiting(true), 9800);
-    const removeTimer = window.setTimeout(() => setIsIntroVisible(false), 10900);
+    const rooftopTimer = window.setTimeout(() => setIsRooftopVisible(true), 3750);
+    const rooftopExitTimer = window.setTimeout(() => setIsRooftopExiting(true), 5800);
+    const removeTimer = window.setTimeout(() => setIsIntroVisible(false), 6900);
     return () => {
       window.clearTimeout(exitTimer);
       window.clearTimeout(rooftopTimer);

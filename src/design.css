@@ -1500,13 +1500,9 @@ button:focus-visible {
   inset: 0;
   width: 100%;
   height: 100%;
-  padding: 8px;
-  border: 3px double #b18443;
-  border-radius: 10px;
-  background: #f5ecd4;
   object-fit: contain;
   backface-visibility: hidden;
-  box-shadow: 0 12px 30px #130a0580, inset 0 0 0 4px #fff9e8;
+  filter: drop-shadow(0 8px 18px #130a0566);
 }
 
 .chapter-intro-logo-left {
@@ -2197,7 +2193,10 @@ button:focus-visible {
 }
 
 .rooftop-film-portrait .rooftop-film-frame {
-  height: 410px;
+  width: min(100%, 39.375vh);
+  height: auto;
+  aspect-ratio: 9 / 16;
+  margin-inline: auto;
 }
 
 .rooftop-film-frame video {
@@ -2222,6 +2221,8 @@ button:focus-visible {
 }
 
 .rooftop-film-copy {
+  width: min(100%, 39.375vh);
+  margin-inline: auto;
   padding: 16px 2px 0;
 }
 
@@ -2397,7 +2398,7 @@ button:focus-visible {
   }
 
   .rooftop-film-portrait .rooftop-film-frame {
-    aspect-ratio: 4 / 5;
+    aspect-ratio: 9 / 16;
   }
 
   .archive-heading {

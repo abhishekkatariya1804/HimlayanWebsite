@@ -244,8 +244,21 @@ export const rooftopVideos = [
   {
     title: 'A rooftop evening',
     note: 'A little moving postcard from an evening at the Chapter.',
-    src: '/assets/chapter-rooftop-session.mp4',
-    orientation: 'landscape',
+    src: '/assets/chapter-rooftop-evening-portrait.mp4',
+    orientation: 'portrait',
+  },
+  {
+    title: 'DJ Night at the Chapter',
+    note: 'An open-air DJ set shared under the Tapovan night sky.',
+    src: '/assets/chapter-dj-night-01.mp4',
+    orientation: 'portrait',
+    showOnHome: false,
+  },
+  {
+    title: 'DJ Night on the rooftop',
+    note: 'Music, lights and a rooftop evening at The Himalayan Chapter.',
+    src: '/assets/chapter-dj-night-02.mp4',
+    orientation: 'portrait',
   },
 ];
 
