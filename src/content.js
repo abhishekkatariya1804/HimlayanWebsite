@@ -219,17 +219,19 @@ export const menuSections = [
 
 export const events = [
   {
-    id: 'open-mic-harshit',
-    title: 'Open Mic with Harshit',
-    type: 'Open mic',
+    id: 'varun-dagar-live-tapovan',
+    title: 'Varun Dagar — Live in Tapovan',
+    type: 'Singing & dance performance',
+    date: '2026-11-14',
     time: '8:00 PM onwards',
-    note: 'An open rooftop evening for music, poetry, stories and spontaneous performances.',
-    bookingText: 'Hi! I would like to reserve a spot for Open Mic with Harshit at The Himalayan Chapter.',
+    note: 'Join us for a live singing and dance performance. Limited reservations available.',
+    image: '/assets/chapter-varun-dagar-event.png',
+    bookingText: 'Hi! I would like to reserve a spot for Varun Dagar live in Tapovan on 14 November at The Himalayan Chapter.',
   },
 ];
 
 export const eventArchive = [
-  { title: 'Fusion Kirtan', type: 'Live music', image: '/assets/chapter-rooftop-gathering.jpg', note: 'An evening of devotional songs, instruments and shared energy.' },
+  { title: 'Group Events & Gatherings', type: 'Live music', image: '/assets/chapter-rooftop-gathering.jpg', note: 'An evening of devotional songs, instruments and shared energy.' },
   { title: 'Rooftop Live Sessions', type: 'Live music', image: '/assets/chapter-rooftop-music.jpg', note: 'Good music, open skies and a rooftop full of company.' },
   { title: 'Rooftop Evenings', type: 'Rooftop gathering', image: '/assets/chapter-rooftop-panorama.jpg', note: 'Mountain views, open skies and room to stay a little longer.' },
 ];
@@ -239,18 +241,21 @@ export const rooftopVideos = [
     title: 'Live from the rooftop',
     note: 'An open-air performance with Tapovan and the hills all around.',
     src: '/assets/chapter-live-music.mp4',
+    poster: '/assets/chapter-live-music-poster.jpg',
     orientation: 'portrait',
   },
   {
     title: 'A rooftop evening',
     note: 'A little moving postcard from an evening at the Chapter.',
     src: '/assets/chapter-rooftop-evening-portrait.mp4',
+    poster: '/assets/chapter-rooftop-evening-portrait-poster.jpg',
     orientation: 'portrait',
   },
   {
     title: 'DJ Night at the Chapter',
     note: 'An open-air DJ set shared under the Tapovan night sky.',
     src: '/assets/chapter-dj-night-01.mp4',
+    poster: '/assets/chapter-dj-night-01-poster.jpg',
     orientation: 'portrait',
     showOnHome: false,
   },
@@ -258,6 +263,7 @@ export const rooftopVideos = [
     title: 'DJ Night on the rooftop',
     note: 'Music, lights and a rooftop evening at The Himalayan Chapter.',
     src: '/assets/chapter-dj-night-02.mp4',
+    poster: '/assets/chapter-dj-night-02-poster.jpg',
     orientation: 'portrait',
   },
 ];

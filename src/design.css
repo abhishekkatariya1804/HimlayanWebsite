@@ -1433,25 +1433,26 @@ button:focus-visible {
   bottom: 0;
   z-index: 1;
   width: 50.15%;
-  background:
-    radial-gradient(ellipse at 30% 37%, #b0784030 0, transparent 38%),
-    repeating-linear-gradient(90deg, transparent 0 11px, #f3cb8210 12px, transparent 14px 28px, #1a0e081c 30px, transparent 32px 47px),
-    repeating-linear-gradient(0deg, #1d100b14 0 2px, transparent 3px 86px),
-    linear-gradient(90deg, #24150d 0, #754a27 8%, #54351f 20%, #8a5c32 46%, #5d391f 72%, #734622 91%, #28180f 100%);
+  background-color: #3b2417;
+  background-image: url('/assets/chapter-door-reference.png');
+  background-repeat: no-repeat;
+  background-size: 200% auto;
   content: "";
   backface-visibility: hidden;
-  box-shadow: inset 0 0 70px #100a07a6, inset 0 0 0 20px #2114099c, inset 0 0 0 23px #d0a15a70, inset 0 0 0 29px #29180c55;
+  box-shadow: inset 0 0 70px #100a0766, inset 0 0 14px 3px #160c08a6;
   transition: transform 1.05s cubic-bezier(.77, 0, .18, 1), opacity .3s ease;
 }
 
 .chapter-intro::before {
   left: 0;
+  background-position: left center;
   border-right: 1px solid #c8a35a40;
   transform-origin: left center;
 }
 
 .chapter-intro::after {
   right: 0;
+  background-position: right center;
   border-left: 1px solid #c8a35a40;
   transform-origin: right center;
 }
@@ -2557,7 +2558,7 @@ button:focus-visible {
 
 .home-film-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 20px;
 }
 
@@ -2569,9 +2570,11 @@ button:focus-visible {
 
 .home-film-frame {
   display: grid;
-  aspect-ratio: 16 / 10;
+  width: min(100%, 360px);
+  aspect-ratio: 9 / 16;
   place-items: center;
   overflow: hidden;
+  margin-inline: auto;
   background: #243a30;
 }
 
@@ -2579,10 +2582,12 @@ button:focus-visible {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
 }
 
 .home-film-copy {
+  width: min(100%, 360px);
+  margin-inline: auto;
   padding: 18px 20px 14px;
 }
 
@@ -2623,6 +2628,10 @@ button:focus-visible {
   .home-film-grid {
     grid-template-columns: 1fr;
     gap: 14px;
+  }
+
+  .home-film-frame {
+    width: min(100%, 360px);
   }
 
   .home-film-copy {

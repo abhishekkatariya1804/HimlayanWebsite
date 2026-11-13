@@ -20,6 +20,8 @@ const navItems = [
   ['Visit', '/visit'],
 ];
 
+const internalNavigationStorageKey = 'chapter-internal-navigation';
+
 const homeHeroSlides = [
   { type: 'image', src: '/assets/chapter-cafe-postcard-01.jpg', alt: 'A balcony at The Himalayan Chapter overlooking Tapovan and the hills', caption: 'Take in the view.' },
   { type: 'image', src: '/assets/chapter-cafe-postcard-02.jpg', alt: 'The rooftop terrace set for a relaxed meal with mountain views', caption: 'A table above the town.' },
@@ -214,10 +216,10 @@ function HomePage() {
               <a className="text-link" href="/events">More rooftop stories <Arrow /></a>
             </div>
             <div className="home-film-grid">
-              {rooftopVideos.filter((video) => video.showOnHome !== false).map((video, index) => (
+              {rooftopVideos.filter((video) => video.showOnHome !== false).map((video) => (
                 <article className="home-film" key={video.src}>
                   <div className="home-film-frame">
-                    <video controls playsInline preload="none" poster={index === 0 ? '/assets/chapter-rooftop-music.jpg' : '/assets/chapter-rooftop-gathering.jpg'} aria-label={video.title}>
+                    <video controls playsInline preload="none" poster={video.poster} aria-label={video.title}>
                       <source src={video.src} type="video/mp4" />
                       Your browser does not support embedded videos.
                     </video>
@@ -416,7 +418,7 @@ function EventsPage() {
       <section className="section-pad wrap events-page">
         <div className="section-heading"><div><span className="eyebrow">The calendar</span><h2>Upcoming<br /><em>at the Chapter.</em></h2></div><span className="calendar-live"><i /> Dates confirmed by the Chapter</span></div>
         {activeEvents.length ? <div className="upcoming-grid">{activeEvents.map((event) => <article className={`upcoming-card${event.image ? '' : ' upcoming-card-no-image'}`} key={event.id}>{event.image ? <img src={event.image} alt={`${event.title} at The Himalayan Chapter`} /> : <div className="upcoming-event-mark"><span>ON THE ROOFTOP</span><strong>Good voices.<br />Long evenings.</strong><small>OPEN MIC · TAPOVAN</small></div>}<div className="upcoming-content"><span className="eyebrow">{event.type}{formatEventDate(event.date, { day: '2-digit', month: 'long' }) ? ` · ${formatEventDate(event.date, { day: '2-digit', month: 'long' })}` : ''}</span><h3>{event.title}</h3><p>{event.note}</p><div className="event-time"><span>Doors & music</span><strong>{event.time}</strong></div><WhatsAppLink message={event.bookingText}>Reserve your place <Arrow diagonal /></WhatsAppLink></div></article>)}</div> : <div className="no-events"><span className="no-events-star">✳</span><div><h3>Next dates are being written.</h3><p>Follow Instagram for the next announcement, or message us to ask what’s happening this week.</p><div className="hero-actions"><a className="button button-dark" href={instagramUrl} target="_blank" rel="noreferrer">Follow on Instagram <Arrow diagonal /></a><WhatsAppLink className="button button-outline" message="Hi! What live events are coming up at The Himalayan Chapter?">Ask about upcoming events</WhatsAppLink></div></div></div>}
-        <section className="rooftop-films" aria-labelledby="rooftop-films-title"><div className="rooftop-films-heading"><div><span className="eyebrow">A little closer to the feeling</span><h2 id="rooftop-films-title">The rooftop,<br /><em>in motion.</em></h2></div><p>Press play for music, mountain air and the moments in between.</p></div><div className="rooftop-films-grid">{rooftopVideos.map((video) => <article className={`rooftop-film rooftop-film-${video.orientation}`} key={video.src}><div className="rooftop-film-frame"><video controls playsInline preload="metadata" aria-label={video.title}><source src={video.src} type="video/mp4" />Your browser does not support embedded videos.</video><span className="rooftop-film-tag">THE HIMALAYAN CHAPTER · TAPOVAN</span></div><div className="rooftop-film-copy"><h3>{video.title}</h3><p>{video.note}</p></div></article>)}</div></section>
+        <section className="rooftop-films" aria-labelledby="rooftop-films-title"><div className="rooftop-films-heading"><div><span className="eyebrow">A little closer to the feeling</span><h2 id="rooftop-films-title">The rooftop,<br /><em>in motion.</em></h2></div><p>Press play for music, mountain air and the moments in between.</p></div><div className="rooftop-films-grid">{rooftopVideos.map((video) => <article className={`rooftop-film rooftop-film-${video.orientation}`} key={video.src}><div className="rooftop-film-frame"><video controls playsInline preload="metadata" poster={video.poster} aria-label={video.title}><source src={video.src} type="video/mp4" />Your browser does not support embedded videos.</video><span className="rooftop-film-tag">THE HIMALAYAN CHAPTER · TAPOVAN</span></div><div className="rooftop-film-copy"><h3>{video.title}</h3><p>{video.note}</p></div></article>)}</div></section>
         <div className="archive-heading"><div><span className="eyebrow">Good nights, remembered</span><h2>Past moments</h2></div><div className="filter-pills" role="group" aria-label="Filter past event photos">{categories.map((category) => <button key={category} className={filter === category ? 'selected' : ''} aria-pressed={filter === category} onClick={() => setFilter(category)}>{category}</button>)}</div></div>
         <div className="archive-grid">{archive.map((event) => <article className={`archive-card ${event.artwork ? `archive-card-artwork archive-card-${event.artwork}` : ''}`} key={event.title}>{event.image ? <img src={event.image} alt={event.title} /> : <div className="archive-art" aria-hidden="true"><span>THE CHAPTER</span><i /><b>AFTER<br />HOURS</b><small>RISHIKESH · ROOFTOP</small></div>}<div><span>{event.type}</span><h3>{event.title}</h3><p>{event.note}</p></div></article>)}</div>
         <p className="events-source-note">More moments are shared on <a href={instagramUrl} target="_blank" rel="noreferrer">Instagram <Arrow diagonal /></a>. New event dates are added here as they’re confirmed.</p>
@@ -562,6 +564,20 @@ function VisitPage() {
   );
 }
 
+function markInternalPageNavigation(event) {
+  if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+  if (!(event.target instanceof Element)) return;
+  const link = event.target.closest('a[href]');
+  if (!link || link.hasAttribute('download')) return;
+
+  const target = link.getAttribute('target');
+  if (target && target !== '_self') return;
+
+  const destination = new URL(link.href, window.location.href);
+  if (destination.origin !== window.location.origin || destination.pathname === window.location.pathname) return;
+  window.sessionStorage.setItem(internalNavigationStorageKey, 'true');
+}
+
 function ChapterIntro({ isExiting, isRooftopVisible, isRooftopExiting }) {
   return (
     <div className={`chapter-intro${isExiting ? ' is-exiting' : ''}${isRooftopVisible ? ' is-rooftop' : ''}${isRooftopExiting ? ' is-rooftop-exiting' : ''}`} role="status" aria-label="The Himalayan Chapter">
@@ -579,10 +595,18 @@ function ChapterIntro({ isExiting, isRooftopVisible, isRooftopExiting }) {
 
 function App() {
   const path = useMemo(() => window.location.pathname.replace(/\/$/, '') || '/', []);
-  const [isIntroVisible, setIsIntroVisible] = useState(() => !window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  const [isIntroVisible, setIsIntroVisible] = useState(() => {
+    const shouldSkipIntro = window.sessionStorage.getItem(internalNavigationStorageKey) === 'true';
+    if (shouldSkipIntro) window.sessionStorage.removeItem(internalNavigationStorageKey);
+    return !shouldSkipIntro && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  });
   const [isIntroExiting, setIsIntroExiting] = useState(false);
   const [isRooftopVisible, setIsRooftopVisible] = useState(false);
   const [isRooftopExiting, setIsRooftopExiting] = useState(false);
+  useEffect(() => {
+    document.addEventListener('click', markInternalPageNavigation);
+    return () => document.removeEventListener('click', markInternalPageNavigation);
+  }, []);
   useEffect(() => {
     if (!isIntroVisible) return undefined;
     const exitTimer = window.setTimeout(() => setIsIntroExiting(true), 1700);
